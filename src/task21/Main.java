@@ -6,8 +6,8 @@ import java.util.function.Function;
 
 public class Main {
     public static <T> T[] deleteWrongElements(T[] array, Function<T, T> rule) {
-        return Arrays.stream(array).map(rule).filter(Objects::nonNull).toArray(size ->
-                (T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), size));
+        return Arrays.stream(array).map(rule).filter(Objects::nonNull).toArray(size -> Arrays.copyOf(array, size));
+                //(T[]) java.lang.reflect.Array.newInstance(array.getClass().getComponentType(), size));
     }
 
     public static void main(String[] args) {
